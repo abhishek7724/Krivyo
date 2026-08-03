@@ -519,6 +519,40 @@ h2.display { font-size: clamp(1.95rem, 3.6vw, 2.9rem); }
 .road-tag.next  { background: var(--surface); color: var(--forest-mid); border-color: var(--edge); }
 .road-tag.later { background: var(--surface); color: var(--faint); border-color: var(--line); }
 
+/* ---------- contact ---------- */
+
+.contact {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+.contact-item { background: var(--surface); padding: 30px 26px 32px; }
+.contact-label {
+  font-family: var(--mono); font-size: 0.68rem; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--forest-mid); margin: 0 0 14px;
+}
+.contact-link {
+  display: inline-block;
+  font-family: var(--display); font-size: 1.14rem; font-weight: 600;
+  letter-spacing: -0.02em; color: var(--forest-deep);
+  text-decoration: none; margin-bottom: 12px;
+  border-bottom: 2px solid var(--edge);
+  transition: border-color .16s ease, color .16s ease;
+}
+a.contact-link:hover { color: var(--forest); border-bottom-color: var(--signal); }
+.contact-link.plain { border-bottom-color: transparent; color: var(--muted); }
+.contact-item p { margin: 0; font-size: 0.93rem; color: var(--muted); }
+.contact-foot { margin: 28px 0 0; font-size: 0.9rem; color: var(--muted); max-width: 70ch; }
+
+.foot-contact { margin: 0; font-family: var(--mono); font-size: 0.8rem; }
+.foot-contact a { color: rgba(234,243,241,.72); text-decoration: none; }
+.foot-contact a:hover { color: #fff; text-decoration: underline; }
+.foot-contact .sep { color: rgba(234,243,241,.35); margin: 0 8px; }
+
 /* ---------- install ---------- */
 
 .install { text-align: center; }
@@ -552,6 +586,7 @@ h2.display { font-size: clamp(1.95rem, 3.6vw, 2.9rem); }
 
 @media (max-width: 1040px) {
   .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .contact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 900px) {
@@ -564,6 +599,7 @@ h2.display { font-size: clamp(1.95rem, 3.6vw, 2.9rem); }
 @media (max-width: 620px) {
   body { font-size: 16px; }
   .cards { grid-template-columns: 1fr; }
+  .contact { grid-template-columns: 1fr; }
   .demo-frame { grid-template-columns: 1fr; }
   .foot-nav { margin-left: 0; }
 }
