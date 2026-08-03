@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Krivyo — Record once. Generate everything.</title>
+<meta name="description" content="Krivyo records what you do in Oracle, SAP, Salesforce or any browser application and turns one session into a reviewable, branded process document." />
+<meta name="theme-color" content="#1A4B44" />
+<link rel="icon" href="assets/favicon.png" />
+
+<meta property="og:title" content="Krivyo — Record once. Generate everything." />
+<meta property="og:description" content="Record browser workflows and generate reviewable process guides with screenshots, PDF and ZIP export." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="brand" href="#top">
+      <img src="assets/krivyo-mark.png" alt="" width="28" height="28" />
+      <span class="brand-name">Krivyo</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#capture">What it does</a>
+      <a href="#artifacts">One capture</a>
+      <a href="#flow">How it works</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#privacy">Privacy</a>
+    </nav>
+    <a class="btn btn-sm" href="#install">Add to Chrome</a>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+
+    <div class="hero-copy">
+      <p class="eyebrow">Chrome side panel <span class="dot">·</span> v0.2.4</p>
+      <h1 class="display">Record once.<br />Generate <em>everything</em>.</h1>
+      <p class="lede">
+        Krivyo sits in your browser side panel and watches you do the work — in Oracle Fusion,
+        Oracle WMS Cloud, SAP, Salesforce, AppSheet or any web application. One session becomes a
+        reviewed, branded process document. No scripting, no screenshots pasted into Word at 11pm.
+      </p>
+      <div class="cta-row">
+        <a class="btn" href="#install">Add to Chrome</a>
+        <a class="btn btn-ghost" href="#capture">See what it captures</a>
+      </div>
+      <ul class="hero-meta">
+        <li>Runs in the side panel</li>
+        <li>Nothing uploads by default</li>
+        <li>Built in India</li>
+      </ul>
+    </div>
+
+    <!-- Signature: the capture ring, drawn exactly as the extension draws it -->
+    <div class="hero-demo" aria-hidden="true">
+      <div class="demo-frame">
+
+        <div class="win">
+          <div class="win-bar">
+            <span class="win-dots"><i></i><i></i><i></i></span>
+            <span class="win-url">supplier-portal / create-supplier</span>
+          </div>
+          <div class="win-body" id="stage">
+            <p class="win-app">Create Supplier</p>
+
+            <div class="fld" data-t="1">
+              <label>Supplier Name</label>
+              <div class="ctrl"><span class="typed" id="typed"></span><span class="caret"></span></div>
+            </div>
+
+            <div class="fld" data-t="2">
+              <label>Supplier Type</label>
+              <div class="ctrl sel"><span id="selval">Select…</span><span class="chev"></span></div>
+            </div>
+
+            <div class="fld" data-t="3">
+              <label>Tax Country</label>
+              <div class="ctrl sel"><span>India</span><span class="chev"></span></div>
+            </div>
+
+            <div class="fld-row">
+              <span class="ghostbtn">Cancel</span>
+              <span class="ghostbtn primary" data-t="4">Save</span>
+            </div>
+
+            <div class="ring" id="ring"><i></i><i></i><i></i><i></i></div>
+          </div>
+        </div>
+
+        <aside class="panel">
+          <div class="panel-head">
+            <span class="rec"><i></i>Capturing</span>
+            <span class="panel-count" id="count">0 steps</span>
+          </div>
+          <ol class="steps" id="steps">
+            <li><span class="sq">01</span><span class="sa">CLICK</span><span class="st">Supplier Name</span></li>
+            <li><span class="sq">02</span><span class="sa">ENTER</span><span class="st">Nordwind Logistics</span></li>
+            <li><span class="sq">03</span><span class="sa">SELECT</span><span class="st">Standard supplier</span></li>
+            <li><span class="sq">04</span><span class="sa">CLICK</span><span class="st">Save</span></li>
+          </ol>
+          <div class="panel-foot">Review each step before export</div>
+        </aside>
+
+      </div>
+      <p class="demo-cap">The red ring is the real thing — <code>#C94A4A</code>, drawn on every element you touch.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============ WHAT IT DOES ============ -->
+<section class="band" id="capture">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">Shipping today</p>
+      <h2 class="display">What Krivyo does while you work</h2>
+      <p class="sec-sub">Six things happen between pressing <strong>Start capture</strong> and getting a document you can hand to a client.</p>
+    </header>
+
+    <div class="cards">
+      <article class="card reveal">
+        <span class="card-n">01</span>
+        <h3>Captures the actual work</h3>
+        <p>Clicks, typed values, dropdown selections and screen changes, each with a timestamp, element label, accessibility attributes and the page it happened on.</p>
+      </article>
+      <article class="card reveal">
+        <span class="card-n">02</span>
+        <h3>Rings what you touched</h3>
+        <p>Every interacted element gets a ring drawn on the screenshot, so a reader's eye lands on the right field instead of hunting across a full-page grab.</p>
+      </article>
+      <article class="card reveal">
+        <span class="card-n">03</span>
+        <h3>Masks what shouldn't travel</h3>
+        <p>Passwords, email addresses and recognised sensitive fields are masked before the screenshot is stored. Metadata is length-limited and common patterns are redacted.</p>
+      </article>
+      <article class="card reveal">
+        <span class="card-n">04</span>
+        <h3>Lets you fix it before anyone sees it</h3>
+        <p>Rename steps, rewrite descriptions, crop a screenshot, move the highlight, drop a step that shouldn't be there. The capture is a draft until you say otherwise.</p>
+      </article>
+      <article class="card reveal">
+        <span class="card-n">05</span>
+        <h3>Exports a document, not a dump</h3>
+        <p>A PDF with your document title, your company logo, your client's logo and who prepared it — set once in your profile, applied to every capture after that.</p>
+      </article>
+      <article class="card reveal">
+        <span class="card-n">06</span>
+        <h3>Hands over the raw material too</h3>
+        <p>A ZIP containing <code>raw-session.json</code>, <code>process-model.json</code> and numbered screenshots — the structured record everything else gets built from.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SIGNATURE: ONE CAPTURE, MANY ARTIFACTS ============ -->
+<section class="band band-tint" id="artifacts">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">The whole idea</p>
+      <h2 class="display">One capture. Many artifacts.</h2>
+      <p class="sec-sub">The recording isn't the product — the structured process model underneath it is. Every output below reads from the same capture.</p>
+    </header>
+
+    <div class="branch">
+      <div class="spine">
+        <p class="spine-label">One capture</p>
+        <ol class="spine-steps">
+          <li><span class="sq">01</span><span class="sa">CLICK</span> Supplier Name</li>
+          <li><span class="sq">02</span><span class="sa">ENTER</span> Nordwind Logistics</li>
+          <li><span class="sq">03</span><span class="sa">SELECT</span> Standard supplier</li>
+          <li><span class="sq">04</span><span class="sa">CLICK</span> Save</li>
+          <li><span class="sq">05</span><span class="sa">SCREEN</span> Supplier created</li>
+        </ol>
+        <p class="spine-foot"><code>process-model.json</code></p>
+      </div>
+
+      <div class="fan">
+        <div class="fan-group">
+          <p class="fan-label">Available now</p>
+          <ul class="chips">
+            <li class="chip live">Process guide <span>PDF</span></li>
+            <li class="chip live">Screenshot evidence pack <span>ZIP</span></li>
+            <li class="chip live">Structured process model <span>JSON</span></li>
+          </ul>
+        </div>
+        <div class="fan-group">
+          <p class="fan-label">Being built on the same model</p>
+          <ul class="chips">
+            <li class="chip">AI-written SOPs</li>
+            <li class="chip">Test cases</li>
+            <li class="chip">UAT execution evidence</li>
+            <li class="chip">Defect reports</li>
+            <li class="chip">Training guides</li>
+            <li class="chip">Organisational knowledge base</li>
+            <li class="chip">Process analytics</li>
+            <li class="chip">In-app guidance <span>DAP</span></li>
+            <li class="chip">Workflow replay &amp; automation</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section class="band" id="flow">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">Three moves</p>
+      <h2 class="display">How a capture becomes a document</h2>
+    </header>
+
+    <ol class="flow">
+      <li class="reveal">
+        <span class="flow-n">01</span>
+        <h3>Start capture</h3>
+        <p>Open the side panel and press Start capture. Nothing is recorded before this — not a click, not a screenshot.</p>
+      </li>
+      <li class="reveal">
+        <span class="flow-n">02</span>
+        <h3>Do the work</h3>
+        <p>Run the process exactly as you would demonstrate it. Pause when you need to fetch something, resume when you're back. Krivyo builds the step timeline as you go.</p>
+      </li>
+      <li class="reveal">
+        <span class="flow-n">03</span>
+        <h3>Review, then export</h3>
+        <p>Read the steps back, tidy the wording, crop anything that shouldn't be in frame, then download the PDF or the full ZIP.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ WHO / WHERE ============ -->
+<section class="band band-split">
+  <div class="wrap split">
+    <div class="reveal">
+      <p class="eyebrow">Who it's for</p>
+      <h2 class="display sm">People who document the same screen for the fourth time</h2>
+      <ul class="listy">
+        <li>Functional and ERP consultants writing SOPs during rollout</li>
+        <li>Business analysts capturing as-is process before redesign</li>
+        <li>QA and UAT teams that need evidence, not memory</li>
+        <li>Trainers building guides for go-live</li>
+        <li>Implementation and enterprise operations teams</li>
+      </ul>
+    </div>
+    <div class="reveal">
+      <p class="eyebrow">Where it works</p>
+      <h2 class="display sm">Any application that runs in a browser tab</h2>
+      <ul class="apps">
+        <li>Oracle Fusion</li>
+        <li>Oracle WMS Cloud</li>
+        <li>SAP</li>
+        <li>Salesforce</li>
+        <li>AppSheet</li>
+        <li>Internal web apps</li>
+        <li>Anything else on <code>https://</code></li>
+      </ul>
+      <p class="note">Krivyo reads the page the way a person does — labels, roles and accessibility attributes — so it doesn't need an integration with the application it's documenting.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRIVACY ============ -->
+<section class="band band-deep" id="privacy">
+  <div class="wrap">
+    <header class="sec-head sec-head-invert">
+      <p class="eyebrow">Why security teams sign off</p>
+      <h2 class="display">Your capture stays on your machine</h2>
+      <p class="sec-sub">Consultants record production screens. That only works if the data doesn't wander.</p>
+    </header>
+
+    <div class="priv">
+      <div class="priv-item reveal">
+        <h3>Recording is explicit</h3>
+        <p>Capture begins when you press the button and ends when you stop it. There is no background listening.</p>
+      </div>
+      <div class="priv-item reveal">
+        <h3>Storage is local</h3>
+        <p>Events and the process model sit in extension session storage. Screenshots go to the extension's local IndexedDB on your device.</p>
+      </div>
+      <div class="priv-item reveal">
+        <h3>Nothing uploads on its own</h3>
+        <p>Screenshots and entered values are never sent automatically. Issue-report attachments travel only when you tick them yourself.</p>
+      </div>
+      <div class="priv-item reveal">
+        <h3>No sale, no ads, no brokers</h3>
+        <p>User data is not sold, not used for personalised advertising and not shared with data brokers.</p>
+      </div>
+    </div>
+
+    <p class="priv-link"><a href="privacy.html">Read the full privacy policy</a></p>
+  </div>
+</section>
+
+<!-- ============ ROADMAP ============ -->
+<section class="band" id="roadmap">
+  <div class="wrap">
+    <header class="sec-head">
+      <p class="eyebrow">Where this goes</p>
+      <h2 class="display">From a recorder to a process knowledge platform</h2>
+      <p class="sec-sub">Each stage reuses the same structured capture. Nothing here asks you to record your work twice.</p>
+    </header>
+
+    <ol class="road">
+      <li class="reveal"><span class="road-tag now">Shipped</span><h3>Capture, review and export</h3><p>Recorder, highlight overlay, privacy masking, PDF and ZIP export, document profile with company and client branding.</p></li>
+      <li class="reveal"><span class="road-tag next">Next</span><h3>AI-written documentation</h3><p>Step titles, descriptions and process summaries drafted from the captured model, with the confidence and provenance already carried on each step.</p></li>
+      <li class="reveal"><span class="road-tag next">Next</span><h3>Testing and evidence</h3><p>Test-case generation from a recorded path, UAT execution evidence and defect reports assembled from the same screenshots.</p></li>
+      <li class="reveal"><span class="road-tag later">Planned</span><h3>Knowledge and analytics</h3><p>An organisational knowledge base of captured processes, plus analytics across how work is actually performed rather than how it was designed.</p></li>
+      <li class="reveal"><span class="road-tag later">Planned</span><h3>Guidance and replay</h3><p>Digital adoption guidance layered onto the live application, workflow replay, and automation generated from a recorded process.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ INSTALL ============ -->
+<section class="band band-tint" id="install">
+  <div class="wrap install">
+    <h2 class="display">Stop rewriting the same SOP</h2>
+    <p class="sec-sub">Record the process once. Hand over the document. Keep the model for everything that comes next.</p>
+    <div class="cta-row center">
+      <a class="btn" href="#">Add to Chrome</a>
+      <a class="btn btn-ghost" href="#capture">See what it captures</a>
+    </div>
+    <p class="fineprint">Chrome 114 or later. Works in the side panel.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-foot">
+  <div class="wrap foot-inner">
+    <div class="foot-brand">
+      <img src="assets/krivyo-mark.png" alt="" width="24" height="24" />
+      <span>Krivyo</span>
+      <span class="ver">v0.2.4</span>
+    </div>
+    <nav class="foot-nav" aria-label="Footer">
+      <a href="#capture">What it does</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="privacy.html">Privacy</a>
+    </nav>
+    <p class="foot-india">Built with <span class="heart">♥</span> in India <img src="assets/india-flag.svg" alt="" width="16" height="12" /></p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
