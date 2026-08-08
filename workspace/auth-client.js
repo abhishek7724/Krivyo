@@ -1,6 +1,7 @@
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
 const RETURN_TO_KEY = "krivyo.auth.returnTo";
+const EXTENSION_ID_KEY = "krivyo.extension.id";
 let client = null;
 
 function config() {
@@ -83,13 +84,65 @@ export async function requireAuthenticatedUser() {
   return null;
 }
 
+function rememberedExtensionId() {
+  try {
+    const value = localStorage.getItem(EXTENSION_ID_KEY);
+    return /^[a-z0-9]{32}$/i.test(String(value || "")) ? value : null;
+  } catch {
+    return null;
+  }
+}
+
+async function notifyConnectedExtensionSignedOut() {
+  const extensionId = rememberedExtensionId();
+
+  if (!extensionId || !window.chrome?.runtime?.sendMessage) {
+    return false;
+  }
+
+  try {
+    const result = await chrome.runtime.sendMessage(extensionId, {
+      type: "KRIVYO_AUTH_SIGNED_OUT"
+    });
+
+    return result?.success === true;
+  } catch (error) {
+    console.debug("Krivyo extension sign-out sync unavailable:", error);
+    return false;
+  }
+}
+
 export async function signOutUser() {
   const supabase = getSupabaseClient();
-  const { error } = await supabase.auth.signOut();
 
-  if (error) {
-    throw error;
+  /*
+   * Website and extension are one Krivyo account experience.
+   * Tell the installed extension to clear its local auth immediately, then
+   * globally revoke the Supabase session/refresh tokens.
+   */
+  await notifyConnectedExtensionSignedOut();
+
+  let signOutError = null;
+
+  try {
+    const { error } = await supabase.auth.signOut({ scope: "global" });
+    signOutError = error || null;
+  } catch (error) {
+    signOutError = error;
   }
+
+  /*
+   * Even if the remote/global call is temporarily unavailable, always clear
+   * this website's local Supabase session so the UI actually signs out.
+   */
+  if (signOutError) {
+    try {
+      await supabase.auth.signOut({ scope: "local" });
+    } catch {}
+  }
+
+  // Retry after the global revoke in case the first message raced the page.
+  await notifyConnectedExtensionSignedOut();
 
   try {
     sessionStorage.removeItem(RETURN_TO_KEY);

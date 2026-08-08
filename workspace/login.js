@@ -13,15 +13,41 @@ const state = {
 };
 
 const EXTENSION_REDIRECT_KEY = "krivyo.extension.redirect";
+const EXTENSION_ID_KEY = "krivyo.extension.id";
+
+function rememberExtensionIdFromRedirect(redirect) {
+  const extensionId = extensionIdFromRedirect(redirect);
+
+  if (!extensionId) return null;
+
+  try {
+    localStorage.setItem(EXTENSION_ID_KEY, extensionId);
+  } catch {}
+
+  return extensionId;
+}
+
+function rememberedExtensionId() {
+  try {
+    const value = localStorage.getItem(EXTENSION_ID_KEY);
+    return /^[a-z0-9]{32}$/i.test(String(value || "")) ? value : null;
+  } catch {
+    return null;
+  }
+}
 
 function extensionRedirect() {
   try {
     const fromUrl = new URLSearchParams(location.search).get("ext_redirect");
     if (fromUrl && /^https:\/\/[a-z0-9]+\.chromiumapp\.org\//i.test(fromUrl)) {
       sessionStorage.setItem(EXTENSION_REDIRECT_KEY, fromUrl);
+      rememberExtensionIdFromRedirect(fromUrl);
       return fromUrl;
     }
-    return sessionStorage.getItem(EXTENSION_REDIRECT_KEY) || null;
+
+    const stored = sessionStorage.getItem(EXTENSION_REDIRECT_KEY) || null;
+    if (stored) rememberExtensionIdFromRedirect(stored);
+    return stored;
   } catch {
     return null;
   }
@@ -39,7 +65,8 @@ function extensionIdFromRedirect(redirect) {
 
 async function notifyExtensionDirectly(session) {
   const redirect = extensionRedirect();
-  const extensionId = extensionIdFromRedirect(redirect);
+  const extensionId =
+    extensionIdFromRedirect(redirect) || rememberedExtensionId();
 
   if (!extensionId || !window.chrome?.runtime?.sendMessage || !session) {
     return false;
@@ -52,7 +79,15 @@ async function notifyExtensionDirectly(session) {
       refresh_token: session.refresh_token,
       expires_in: session.expires_in || 3600
     });
-    return result?.success === true;
+
+    if (result?.success === true) {
+      try {
+        localStorage.setItem(EXTENSION_ID_KEY, extensionId);
+      } catch {}
+      return true;
+    }
+
+    return false;
   } catch {
     return false;
   }
@@ -140,6 +175,12 @@ async function redirectIfAlreadySignedIn() {
 
   const user = await getAuthenticatedUser();
   if (user && !state.recovery) {
+    const { data } = await supabase.auth.getSession();
+
+    if (data?.session) {
+      await notifyExtensionDirectly(data.session);
+    }
+
     if (!(await completeExtensionAuthIfRequested())) {
       window.location.replace(destinationAfterAuth());
     }
@@ -170,12 +211,16 @@ $("#signInForm").addEventListener("submit", async (event) => {
   setBusy(button, true, "Sign in");
 
   try {
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email,
       password
     });
 
     if (error) throw error;
+
+    if (data?.session) {
+      await notifyExtensionDirectly(data.session);
+    }
 
     if (!(await completeExtensionAuthIfRequested())) {
       window.location.replace(destinationAfterAuth());
@@ -222,6 +267,8 @@ $("#signUpForm").addEventListener("submit", async (event) => {
     if (error) throw error;
 
     if (data?.session) {
+      await notifyExtensionDirectly(data.session);
+
       if (!(await completeExtensionAuthIfRequested())) {
         window.location.replace(destinationAfterAuth());
       }
