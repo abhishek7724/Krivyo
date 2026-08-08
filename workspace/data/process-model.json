@@ -1,0 +1,546 @@
+{
+  "processId": "4949f057-6e73-4dd9-bace-b33f4d65b9aa",
+  "sessionId": "f9bb0fbe-fc3f-4187-915e-2407cb5e8206",
+  "captureId": "CAP-20260808-053754-10CFD7",
+  "name": "",
+  "description": "",
+  "applicationName": "Oracle Fusion Cloud Applications",
+  "applicationUrl": "https://erjp-dev1.fa.us2.oraclecloud.com",
+  "startTime": "2026-08-08T05:37:54.542Z",
+  "endTime": "2026-08-08T05:39:01.150Z",
+  "duration": {
+    "milliseconds": 66608,
+    "seconds": 66.61
+  },
+  "totalSteps": 10,
+  "steps": [
+    {
+      "stepId": "185ae5fd-14d5-4feb-802e-353ae4e3a41b",
+      "sequence": 1,
+      "title": "Click Sign In",
+      "description": "Click Sign In.",
+      "action": "CLICK",
+      "target": {
+        "label": "Sign In",
+        "role": null,
+        "type": "BUTTON",
+        "section": null
+      },
+      "inputs": [],
+      "screen": {
+        "title": "Sign In",
+        "page": "Sign In",
+        "section": null,
+        "experience": "WEB",
+        "module": null,
+        "businessArea": null
+      },
+      "evidence": {
+        "screenshotId": 1,
+        "screenshot": "screenshots/0001.jpg",
+        "visual": {
+          "viewport": {
+            "width": 1313,
+            "height": 794
+          },
+          "regions": [
+            {
+              "x": 485.83,
+              "y": 596.33,
+              "width": 325,
+              "height": 48
+            }
+          ],
+          "focusRegion": {
+            "x": 485.83,
+            "y": 596.33,
+            "width": 324.99999999999994,
+            "height": 48
+          }
+        }
+      },
+      "aiGenerated": false,
+      "confidence": 1,
+      "notes": null
+    },
+    {
+      "stepId": "2e4ce4ea-f02f-4b5f-9050-1574a1bf4493",
+      "sequence": 2,
+      "title": "Sign In",
+      "description": "Enter \"[MASKED]\" in User ID, then enter \"[MASKED]\" in Password.",
+      "action": "ENTER",
+      "target": {
+        "label": "Password",
+        "role": null,
+        "type": "INPUT",
+        "section": null
+      },
+      "inputs": [
+        {
+          "field": "User ID",
+          "value": "[MASKED]",
+          "type": "TYPE",
+          "masked": true
+        },
+        {
+          "field": "Password",
+          "value": "[MASKED]",
+          "type": "TYPE",
+          "masked": true
+        }
+      ],
+      "screen": {
+        "title": "Sign In",
+        "page": "Sign In",
+        "section": null,
+        "experience": "WEB",
+        "module": null,
+        "businessArea": null
+      },
+      "evidence": {
+        "screenshotId": 2,
+        "screenshot": "screenshots/0002.jpg",
+        "visual": {
+          "viewport": {
+            "width": 1313,
+            "height": 794
+          },
+          "regions": [
+            {
+              "x": 485.83,
+              "y": 443.67,
+              "width": 326.33,
+              "height": 35.33
+            }
+          ],
+          "focusRegion": {
+            "x": 485.83,
+            "y": 443.67,
+            "width": 326.33,
+            "height": 35.329999999999984
+          }
+        }
+      },
+      "aiGenerated": false,
+      "confidence": 1,
+      "notes": null
+    },
+    {
+      "stepId": "54ad2690-46c0-4f91-a323-0b90af042b05",
+      "sequence": 3,
+      "title": "Open Home",
+      "description": "Open Home.",
+      "action": "CLICK",
+      "target": {
+        "label": "Home",
+        "role": null,
+        "type": "A",
+        "section": null
+      },
+      "inputs": [],
+      "screen": {
+        "title": "Welcome",
+        "page": "Welcome, Abhishek Sinha",
+        "section": null,
+        "experience": "CLASSIC_ADF",
+        "module": null,
+        "businessArea": null
+      },
+      "evidence": {
+        "screenshotId": 3,
+        "screenshot": "screenshots/0003.jpg",
+        "visual": {
+          "viewport": {
+            "width": 1313,
+            "height": 794
+          },
+          "regions": [
+            {
+              "x": 1090,
+              "y": 50.78,
+              "width": 24,
+              "height": 13.33
+            }
+          ],
+          "focusRegion": {
+            "x": 1090,
+            "y": 50.78,
+            "width": 24,
+            "height": 13.329999999999998
+          }
+        }
+      },
+      "aiGenerated": false,
+      "confidence": 1,
+      "notes": null
+    },
+    {
+      "stepId": "8d22ca74-043c-42c0-91d6-846e2196ad3c",
+      "sequence": 4,
+      "title": "Open Supply Chain Execution",
+      "description": "Open Supply Chain Execution.",
+      "action": "CLICK",
+      "target": {
+        "label": "Supply Chain Execution",
+        "role": null,
+        "type": "A",
+        "section": "QUICK ACTIONS"
+      },
+      "inputs": [],
+      "screen": {
+        "title": "Oracle Fusion Cloud Applications",
+        "page": "Good morning, Abhishek Sinha",
+        "section": "QUICK ACTIONS",
+        "experience": "CLASSIC_ADF",
+        "module": null,
+        "businessArea": null
+      },
+      "evidence": {
+        "screenshotId": 4,
+        "screenshot": "screenshots/0004.jpg",
+        "visual": {
+          "viewport": {
+            "width": 1313,
+            "height": 794
+          },
+          "regions": [
+            {
+              "x": 610.47,
+              "y": 250.43,
+              "width": 175.54,
+              "height": 22
+            }
+          ],
+          "focusRegion": {
+            "x": 610.47,
+            "y": 250.43,
+            "width": 175.53999999999996,
+            "height": 22
+          }
+        }
+      },
+      "aiGenerated": false,
+      "confidence": 1,
+      "notes": null
+    },
+    {
+      "stepId": "95787d05-1e5f-422a-82c6-419391668f54",
+      "sequence": 5,
+      "title": "Click Inventory Management (Classic)",
+      "description": "Click Inventory Management (Classic).",
+      "action": "CLICK",
+      "target": {
+        "label": "Inventory Management (Classic)",
+        "role": "presentation",
+        "type": "DIV",
+        "section": "Quick Actions"
+      },
+      "inputs": [],
+      "screen": {
+        "title": "Oracle Fusion Cloud Applications",
+        "page": "Good morning, Abhishek Sinha",
+        "section": "Quick Actions",
+        "experience": "CLASSIC_ADF",
+        "module": null,
+        "businessArea": null
+      },
+      "evidence": {
+        "screenshotId": 5,
+        "screenshot": "screenshots/0005.jpg",
+        "visual": {
+          "viewport": {
+            "width": 1313,
+            "height": 794
+          },
+          "regions": [
+            {
+              "x": 569,
+              "y": 526.39,
+              "width": 150,
+              "height": 142.57
+            }
+          ],
+          "focusRegion": {
+            "x": 569,
+            "y": 526.39,
+            "width": 150,
+            "height": 142.57000000000005
+          }
+        }
+      },
+      "aiGenerated": false,
+      "confidence": 1,
+      "notes": null
+    },
+    {
+      "stepId": "6a4108aa-f692-4876-8a67-7afb826ef77b",
+      "sequence": 6,
+      "title": "Click Tasks",
+      "description": "Click Tasks.",
+      "action": "CLICK",
+      "target": {
+        "label": "Tasks",
+        "role": null,
+        "type": "IMG",
+        "section": "Inventory Management"
+      },
+      "inputs": [],
+      "screen": {
+        "title": "Overview - Inventory Management (Classic) - Oracle Fusion Cloud Applications",
+        "page": "Inventory Management",
+        "section": "Inventory Management",
+        "experience": "CLASSIC_ADF",
+        "module": null,
+        "businessArea": null
+      },
+      "evidence": {
+        "screenshotId": 6,
+        "screenshot": "screenshots/0006.jpg",
+        "visual": {
+          "viewport": {
+            "width": 1313,
+            "height": 794
+          },
+          "regions": [
+            {
+              "x": 1254.67,
+              "y": 234,
+              "width": 42,
+              "height": 42
+            }
+          ],
+          "focusRegion": {
+            "x": 1254.67,
+            "y": 234,
+            "width": 42,
+            "height": 42
+          }
+        }
+      },
+      "aiGenerated": false,
+      "confidence": 1,
+      "notes": null
+    },
+    {
+      "stepId": "56def8d6-3b14-4617-8b77-1dc08a7e5186",
+      "sequence": 7,
+      "title": "Select Show Tasks",
+      "description": "Select \"Shipments\" in Show Tasks.",
+      "action": "SELECT",
+      "target": {
+        "label": "Show Tasks",
+        "role": null,
+        "type": "SELECT",
+        "section": "Inventory Counts Shipments Picks Receipts"
+      },
+      "inputs": [
+        {
+          "field": "Show Tasks",
+          "value": "Shipments",
+          "type": "SELECT",
+          "masked": false
+        }
+      ],
+      "screen": {
+        "title": "Overview - Inventory Management (Classic) - Oracle Fusion Cloud Applications",
+        "page": "Inventory Management",
+        "section": "Inventory Counts Shipments Picks Receipts",
+        "experience": "CLASSIC_ADF",
+        "module": null,
+        "businessArea": null
+      },
+      "evidence": {
+        "screenshotId": 7,
+        "screenshot": "screenshots/0007.jpg",
+        "visual": {
+          "viewport": {
+            "width": 1313,
+            "height": 794
+          },
+          "regions": [
+            {
+              "x": 961.8,
+              "y": 93.32,
+              "width": 78.67,
+              "height": 28
+            }
+          ],
+          "focusRegion": {
+            "x": 961.8,
+            "y": 93.32,
+            "width": 78.67000000000007,
+            "height": 28
+          }
+        }
+      },
+      "aiGenerated": false,
+      "confidence": 1,
+      "notes": null
+    },
+    {
+      "stepId": "36e4e30b-28c3-4d82-a493-c516282c53a8",
+      "sequence": 8,
+      "title": "Open Manage Shipment Lines",
+      "description": "Open Manage Shipment Lines.",
+      "action": "CLICK",
+      "target": {
+        "label": "Manage Shipment Lines",
+        "role": null,
+        "type": "A",
+        "section": null
+      },
+      "inputs": [],
+      "screen": {
+        "title": "Overview - Inventory Management (Classic) - Oracle Fusion Cloud Applications",
+        "page": "Inventory Management",
+        "section": null,
+        "experience": "CLASSIC_ADF",
+        "module": null,
+        "businessArea": null
+      },
+      "evidence": {
+        "screenshotId": 8,
+        "screenshot": "screenshots/0008.jpg",
+        "visual": {
+          "viewport": {
+            "width": 1313,
+            "height": 794
+          },
+          "regions": [
+            {
+              "x": 923.33,
+              "y": 178.33,
+              "width": 129.42,
+              "height": 13.33
+            }
+          ],
+          "focusRegion": {
+            "x": 923.33,
+            "y": 178.33,
+            "width": 129.41999999999996,
+            "height": 13.330000000000013
+          }
+        }
+      },
+      "aiGenerated": false,
+      "confidence": 1,
+      "notes": null
+    },
+    {
+      "stepId": "4237287b-971b-44ea-a2d9-e23502ddd7d0",
+      "sequence": 9,
+      "title": "Manage Shipment Lines",
+      "description": "Select \"Before\" in Scheduled Ship Date Operator, then enter \"AUSSYRL\" in Ship-from Organization.",
+      "action": "ENTER",
+      "target": {
+        "label": "Ship-from Organization",
+        "role": "combobox",
+        "type": "INPUT",
+        "section": null
+      },
+      "inputs": [
+        {
+          "field": "Scheduled Ship Date Operator",
+          "value": "Before",
+          "type": "SELECT",
+          "masked": false
+        },
+        {
+          "field": "Ship-from Organization",
+          "value": "AUSSYRL",
+          "type": "TYPE",
+          "masked": false
+        }
+      ],
+      "screen": {
+        "title": "Manage Shipment Lines - Inventory Management (Classic) - Oracle Fusion Cloud Applications",
+        "page": "Manage Shipment Lines",
+        "section": null,
+        "experience": "CLASSIC_ADF",
+        "module": null,
+        "businessArea": null
+      },
+      "evidence": {
+        "screenshotId": 11,
+        "screenshot": "screenshots/0011.jpg",
+        "visual": {
+          "viewport": {
+            "width": 1313,
+            "height": 794
+          },
+          "regions": [
+            {
+              "x": 772.26,
+              "y": 301.33,
+              "width": 156.67,
+              "height": 28
+            }
+          ],
+          "focusRegion": {
+            "x": 772.26,
+            "y": 301.33,
+            "width": 156.66999999999996,
+            "height": 28
+          }
+        }
+      },
+      "aiGenerated": false,
+      "confidence": 1,
+      "notes": null
+    },
+    {
+      "stepId": "a4dac725-e661-4b99-bebf-703444956a80",
+      "sequence": 10,
+      "title": "Click Search",
+      "description": "Click Search.",
+      "action": "SEARCH",
+      "target": {
+        "label": "Search",
+        "role": null,
+        "type": "BUTTON",
+        "section": "Advanced Search"
+      },
+      "inputs": [],
+      "screen": {
+        "title": "Manage Shipment Lines - Inventory Management (Classic) - Oracle Fusion Cloud Applications",
+        "page": "Manage Shipment Lines",
+        "section": "Advanced Search",
+        "experience": "CLASSIC_ADF",
+        "module": null,
+        "businessArea": null
+      },
+      "evidence": {
+        "screenshotId": 12,
+        "screenshot": "screenshots/0012.jpg",
+        "visual": {
+          "viewport": {
+            "width": 1313,
+            "height": 794
+          },
+          "regions": [
+            {
+              "x": 950.22,
+              "y": 414.33,
+              "width": 53.36,
+              "height": 28
+            }
+          ],
+          "focusRegion": {
+            "x": 950.22,
+            "y": 414.33,
+            "width": 53.360000000000014,
+            "height": 28
+          }
+        }
+      },
+      "aiGenerated": false,
+      "confidence": 1,
+      "notes": null
+    }
+  ],
+  "aiGenerated": false,
+  "confidence": 1,
+  "createdAt": "2026-08-08T05:39:01.151Z",
+  "processingVersion": "1.2.0",
+  "updatedAt": "2026-08-08T05:39:01.151Z"
+}

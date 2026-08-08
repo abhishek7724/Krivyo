@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Krivyo Workspace — turn one reviewed capture into process guides, test scripts and process knowledge." />
+  <title>Krivyo Workspace</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="workspace.css" />
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">Skip to content</a>
+
+  <div class="app-shell">
+    <aside class="side-nav" aria-label="Primary navigation">
+      <a class="brand" href="https://krivyo.com" aria-label="Krivyo home">
+        <img src="assets/krivyo-mark.svg" alt="" width="36" height="36" />
+        <span class="brand-copy">
+          <strong>Krivyo</strong>
+          <small>Workspace</small>
+        </span>
+      </a>
+
+      <nav class="nav-group">
+        <span class="nav-label">Work</span>
+        <button class="nav-item active" data-toast="Workspace is open">
+          <span class="nav-icon" aria-hidden="true">⌘</span><span>Workspace</span>
+        </button>
+        <button class="nav-item" data-toast="Library comes next">
+          <span class="nav-icon" aria-hidden="true">▦</span><span>Library</span>
+        </button>
+        <button class="nav-item" data-toast="Capture history comes next">
+          <span class="nav-icon" aria-hidden="true">◉</span><span>Captures</span>
+        </button>
+        <button class="nav-item" data-toast="Test & UAT hub comes next">
+          <span class="nav-icon" aria-hidden="true">✓</span><span>Test &amp; UAT</span>
+        </button>
+      </nav>
+
+      <nav class="nav-group nav-group-bottom">
+        <span class="nav-label">Manage</span>
+        <button class="nav-item" data-toast="Analytics comes in a later phase">
+          <span class="nav-icon" aria-hidden="true">↗</span><span>Analytics</span><span class="soon">Soon</span>
+        </button>
+        <button class="nav-item" data-toast="Workspace settings come with accounts">
+          <span class="nav-icon" aria-hidden="true">⚙</span><span>Settings</span>
+        </button>
+      </nav>
+
+      <div class="nav-footer">
+        <div class="plan-card">
+          <span class="spark" aria-hidden="true">✦</span>
+          <div><strong>AI connected</strong><small>Guide + process models ready</small></div>
+        </div>
+        <a href="https://krivyo.com" class="back-link">← Back to krivyo.com</a>
+      </div>
+    </aside>
+
+    <main class="main" id="mainContent">
+      <header class="topbar">
+        <div class="crumbs" aria-label="Breadcrumb">
+          <a href="https://krivyo.com">Krivyo</a><span>/</span><span>Captures</span><span>/</span><strong id="crumbCapture">CAP-…</strong>
+        </div>
+        <div class="top-actions">
+          <button class="icon-button" id="commandButton" title="Command menu" aria-label="Open command menu">⌘K</button>
+          <button class="button button-ghost" id="shareButton">Share</button>
+          <button class="button button-primary" id="exportGuideButton">Export guide</button>
+        </div>
+      </header>
+
+      <section class="hero-strip">
+        <div class="hero-copy">
+          <div class="eyebrow-row">
+            <span class="app-pill"><span class="oracle-dot"></span><span id="applicationName">Oracle Fusion Cloud Applications</span></span>
+            <span class="status-pill"><span class="status-dot"></span>AI enhanced</span>
+          </div>
+          <h1 id="processTitle">Manage Shipment Lines — Search Shipments</h1>
+          <p id="processDescription">A reviewed capture transformed into a process guide and test-ready business flow.</p>
+          <div class="meta-row">
+            <span><strong id="recordedCount">10</strong> recorded steps</span>
+            <span class="meta-sep">•</span>
+            <span><strong id="testCount">7</strong> business test steps</span>
+            <span class="meta-sep">•</span>
+            <span>Processed by <strong id="aiModel">gpt-5-mini</strong></span>
+          </div>
+        </div>
+        <div class="hero-score">
+          <span>Traceability</span>
+          <strong id="coverageScore">100%</strong>
+          <small>Every recorded step accounted for</small>
+        </div>
+      </section>
+
+      <nav class="tabs" role="tablist" aria-label="Workspace views">
+        <button class="tab active" role="tab" aria-selected="true" data-tab="guide">Process Guide <span class="tab-count" id="guideTabCount">10</span></button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="test">Test Script <span class="tab-count" id="testTabCount">7</span></button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="recording">Recording <span class="tab-count" id="recordingTabCount">10</span></button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="details">Details</button>
+      </nav>
+
+      <section class="tab-panel active" data-panel="guide">
+        <div class="workspace-grid">
+          <aside class="step-sidebar">
+            <div class="step-sidebar-head">
+              <div><span class="section-kicker">Process guide</span><strong>Steps</strong></div>
+              <button class="mini-icon" id="collapseSteps" title="Collapse list">≡</button>
+            </div>
+            <label class="search-box">
+              <span aria-hidden="true">⌕</span>
+              <input id="stepSearch" type="search" placeholder="Search steps" autocomplete="off" />
+            </label>
+            <div class="step-list" id="guideStepList"></div>
+          </aside>
+
+          <div class="guide-canvas">
+            <div class="canvas-toolbar">
+              <div>
+                <span class="section-kicker">Selected step</span>
+                <h2 id="selectedStepHeading">Step 1 of 10</h2>
+              </div>
+              <div class="toolbar-actions">
+                <button class="button button-subtle" id="restoreButton">Restore original</button>
+                <button class="button button-dark" id="editButton">Edit wording</button>
+              </div>
+            </div>
+
+            <article class="guide-card">
+              <div class="evidence-frame" id="evidenceFrame">
+                <div class="mock-browser">
+                  <div class="mock-browser-bar"><span></span><span></span><span></span><div>Oracle Fusion · captured evidence</div></div>
+                  <div class="private-shot">
+                    <div class="privacy-icon">▣</div>
+                    <strong>Screenshot not shared to cloud</strong>
+                    <p>Krivyo keeps the step evidence private unless the user explicitly shares screenshots.</p>
+                    <span class="privacy-badge">Privacy-first evidence</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="guide-copy-card">
+                <div class="step-number-large" id="selectedStepNumber">01</div>
+                <div class="editable-copy">
+                  <div class="copy-label">AI-enhanced title <span class="ai-chip">✦ AI</span></div>
+                  <h3 id="guideTitle" contenteditable="false">Loading…</h3>
+                  <div class="copy-label description-label">Instruction</div>
+                  <p id="guideDescription" contenteditable="false">Loading…</p>
+                  <div class="source-line">
+                    <span id="actionBadge" class="action-badge">CLICK</span>
+                    <span id="screenContext">Source evidence</span>
+                    <span class="confidence" id="guideConfidence">100% confidence</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="provenance-card">
+                <div class="provenance-icon">↳</div>
+                <div>
+                  <strong>Source-linked, not AI invented</strong>
+                  <p>This wording maps to exactly one reviewed recorder step. Screenshot, highlight, values and sequence remain owned by the deterministic process model.</p>
+                </div>
+                <code id="sourceStepId">sourceStepId</code>
+              </div>
+            </article>
+          </div>
+
+          <aside class="inspector">
+            <div class="inspector-section">
+              <span class="section-kicker">Guide health</span>
+              <div class="health-score"><strong>100</strong><span>/ 100</span></div>
+              <div class="health-bar"><span style="width:100%"></span></div>
+              <p>All source steps are traceable and the AI guide keeps one-to-one sequencing.</p>
+            </div>
+            <div class="inspector-section">
+              <span class="section-kicker">AI rules</span>
+              <ul class="check-list">
+                <li><span>✓</span>No step grouping</li>
+                <li><span>✓</span>No step reordering</li>
+                <li><span>✓</span>Masked values preserved</li>
+                <li><span>✓</span>Evidence unchanged</li>
+              </ul>
+            </div>
+            <div class="inspector-section">
+              <span class="section-kicker">Next output</span>
+              <button class="wide-action" id="downloadEnhancedButton"><span>⇩</span><div><strong>Enhanced PDF</strong><small>Connect generator next</small></div></button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="tab-panel" data-panel="test">
+        <div class="test-header-grid">
+          <div class="test-summary-card">
+            <span class="section-kicker">AI-generated test case</span>
+            <div class="test-title-row">
+              <div><h2 id="testCaseName">Search Shipment Lines</h2><p id="businessObjective"></p></div>
+              <span class="draft-chip">AI Draft</span>
+            </div>
+            <div class="summary-grid">
+              <div><span>Application</span><strong id="testApplication">—</strong></div>
+              <div><span>Module</span><strong id="testModule">—</strong></div>
+              <div><span>Business area</span><strong id="testBusinessArea">—</strong></div>
+              <div><span>Coverage</span><strong id="testCoverage">100%</strong></div>
+            </div>
+          </div>
+          <div class="precondition-card">
+            <span class="section-kicker">Precondition</span>
+            <p id="preconditionText">—</p>
+            <div class="precondition-footer"><span>Source linked</span><span id="preconditionConfidence">—</span></div>
+          </div>
+        </div>
+
+        <div class="table-card">
+          <div class="table-toolbar">
+            <div><span class="section-kicker">Test script</span><h2>Execution-ready steps</h2></div>
+            <div class="toolbar-actions">
+              <button class="button button-subtle" id="exportCsvButton">Export CSV</button>
+              <button class="button button-dark" data-toast="UAT execution comes in the next phase">Run test</button>
+            </div>
+          </div>
+          <div class="table-scroll">
+            <table class="test-table">
+              <thead><tr><th>#</th><th>Test step</th><th>Test data</th><th>Expected result</th><th>Evidence</th><th>Confidence</th></tr></thead>
+              <tbody id="testTableBody"></tbody>
+            </table>
+          </div>
+          <div class="table-note"><span>ⓘ</span> Expected results marked <strong>Inferred</strong> are AI interpretations; <strong>Recorded</strong> results are supported by the captured path, and <strong>Unknown</strong> remains intentionally unclaimed.</div>
+        </div>
+      </section>
+
+      <section class="tab-panel" data-panel="recording">
+        <div class="recording-layout">
+          <div class="artifact-card">
+            <div class="table-toolbar"><div><span class="section-kicker">Original recording</span><h2>Deterministic timeline</h2></div><span class="locked-chip">Locked source</span></div>
+            <div id="recordingTimeline" class="timeline"></div>
+          </div>
+          <aside class="artifact-stack">
+            <div class="artifact-status success"><span>✓</span><div><strong>process-model.json</strong><small>Synced · AI source</small></div></div>
+            <div class="artifact-status success"><span>✓</span><div><strong>raw-session.json</strong><small>Preserved · future DAP/replay</small></div></div>
+            <div class="artifact-status success"><span>✦</span><div><strong>guide-model.json</strong><small>AI wording · no grouping</small></div></div>
+            <div class="artifact-status success"><span>✦</span><div><strong>ai-process-model.json</strong><small>Business grouping · Test/UAT</small></div></div>
+            <div class="artifact-status private"><span>▣</span><div><strong>Screenshots</strong><small>Not shared to cloud</small></div></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="tab-panel" data-panel="details">
+        <div class="details-grid">
+          <div class="details-card"><span class="section-kicker">Capture</span><dl id="captureDetails"></dl></div>
+          <div class="details-card"><span class="section-kicker">AI provenance</span><dl id="aiDetails"></dl></div>
+          <div class="details-card"><span class="section-kicker">Privacy state</span><dl><div><dt>Raw + process JSON</dt><dd><span class="good-dot"></span>Stored after first PDF download</dd></div><div><dt>Diagnostics</dt><dd>Only after ≤3★ or explicit issue</dd></div><div><dt>Screenshots</dt><dd><span class="private-dot"></span>Not shared</dd></div></dl></div>
+          <div class="details-card"><span class="section-kicker">Storage layout</span><pre class="storage-tree">captures/&lt;captureId&gt;/
+├── process-model.json
+├── raw-session.json
+├── guide-model.json
+└── ai-process-model.json</pre></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="command-palette" id="commandPalette" aria-hidden="true">
+    <button class="command-backdrop" aria-label="Close command menu"></button>
+    <div class="command-dialog" role="dialog" aria-modal="true" aria-label="Command menu">
+      <div class="command-search"><span>⌕</span><input id="commandSearch" placeholder="Jump to a workspace view…" /></div>
+      <button data-command-tab="guide"><strong>Process Guide</strong><span>AI-enhanced document steps</span></button>
+      <button data-command-tab="test"><strong>Test Script</strong><span>Grouped business test steps</span></button>
+      <button data-command-tab="recording"><strong>Recording</strong><span>Original deterministic timeline</span></button>
+      <button data-command-tab="details"><strong>Details</strong><span>Capture and AI provenance</span></button>
+    </div>
+  </div>
+
+  <script src="workspace.js" defer></script>
+</body>
+</html>

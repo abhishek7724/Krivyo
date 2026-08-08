@@ -1,0 +1,231 @@
+{
+  "schemaVersion": "1.0",
+  "source": {
+    "captureId": "CAP-20260808-053754-10CFD7",
+    "processId": "4949f057-6e73-4dd9-bace-b33f4d65b9aa",
+    "processingVersion": "1.2.0"
+  },
+  "ai": {
+    "provider": "openai",
+    "model": "gpt-5-mini",
+    "promptVersion": "krivyo-process-enhancer-v1",
+    "generatedAt": "2026-08-08T07:00:37.640Z"
+  },
+  "process": {
+    "name": "Manage Shipment Lines — Search Shipments",
+    "description": "Navigate to Inventory Management (Classic) and run an advanced search on Manage Shipment Lines using Scheduled Ship Date Operator and Ship-from Organization filters.",
+    "businessObjective": "Locate shipment lines by filtering Manage Shipment Lines for shipments from a specified organization and scheduled ship date operator.",
+    "application": "Oracle Fusion Cloud Applications",
+    "module": "Inventory Management (Classic)",
+    "businessArea": "Supply Chain Execution",
+    "transaction": null,
+    "preconditions": [
+      {
+        "text": "User signs in to Oracle Fusion Cloud Applications (Sign In action and credentials entered).",
+        "sourceStepIds": [
+          "185ae5fd-14d5-4feb-802e-353ae4e3a41b",
+          "2e4ce4ea-f02f-4b5f-9050-1574a1bf4493"
+        ],
+        "confidence": 0.95
+      }
+    ],
+    "testData": [
+      {
+        "field": "Show Tasks",
+        "value": "Shipments",
+        "masked": false,
+        "sourceStepIds": [
+          "56def8d6-3b14-4617-8b77-1dc08a7e5186"
+        ]
+      },
+      {
+        "field": "Scheduled Ship Date Operator",
+        "value": "Before",
+        "masked": false,
+        "sourceStepIds": [
+          "4237287b-971b-44ea-a2d9-e23502ddd7d0"
+        ]
+      },
+      {
+        "field": "Ship-from Organization",
+        "value": "AUSSYRL",
+        "masked": false,
+        "sourceStepIds": [
+          "4237287b-971b-44ea-a2d9-e23502ddd7d0"
+        ]
+      }
+    ],
+    "businessSteps": [
+      {
+        "id": "54ad2690-46c0-4f91-a323-0b90af042b05",
+        "sequence": 1,
+        "title": "Open Home",
+        "instruction": "Click Home.",
+        "expectedResult": "Home page displayed showing 'Welcome, Abhishek Sinha'.",
+        "expectedResultBasis": "RECORDED",
+        "sourceStepIds": [
+          "54ad2690-46c0-4f91-a323-0b90af042b05"
+        ],
+        "evidenceRefs": [
+          {
+            "sourceStepId": "54ad2690-46c0-4f91-a323-0b90af042b05",
+            "screenshotId": 3,
+            "screenshot": "screenshots/0003.jpg"
+          }
+        ],
+        "confidence": 0.95
+      },
+      {
+        "id": "8d22ca74-043c-42c0-91d6-846e2196ad3c",
+        "sequence": 2,
+        "title": "Open Inventory Management (Classic) via Quick Actions",
+        "instruction": "Click Supply Chain Execution in Quick Actions, then click Inventory Management (Classic).",
+        "expectedResult": "Inventory Management (Classic) quick action selected.",
+        "expectedResultBasis": "RECORDED",
+        "sourceStepIds": [
+          "8d22ca74-043c-42c0-91d6-846e2196ad3c",
+          "95787d05-1e5f-422a-82c6-419391668f54"
+        ],
+        "evidenceRefs": [
+          {
+            "sourceStepId": "8d22ca74-043c-42c0-91d6-846e2196ad3c",
+            "screenshotId": 4,
+            "screenshot": "screenshots/0004.jpg"
+          },
+          {
+            "sourceStepId": "95787d05-1e5f-422a-82c6-419391668f54",
+            "screenshotId": 5,
+            "screenshot": "screenshots/0005.jpg"
+          }
+        ],
+        "confidence": 0.92
+      },
+      {
+        "id": "6a4108aa-f692-4876-8a67-7afb826ef77b",
+        "sequence": 3,
+        "title": "Open Tasks",
+        "instruction": "Click Tasks in Inventory Management.",
+        "expectedResult": "Tasks menu or tasks area is opened (Tasks icon clicked).",
+        "expectedResultBasis": "INFERRED",
+        "sourceStepIds": [
+          "6a4108aa-f692-4876-8a67-7afb826ef77b"
+        ],
+        "evidenceRefs": [
+          {
+            "sourceStepId": "6a4108aa-f692-4876-8a67-7afb826ef77b",
+            "screenshotId": 6,
+            "screenshot": "screenshots/0006.jpg"
+          }
+        ],
+        "confidence": 0.8
+      },
+      {
+        "id": "56def8d6-3b14-4617-8b77-1dc08a7e5186",
+        "sequence": 4,
+        "title": "Select Show Tasks = Shipments",
+        "instruction": "In Show Tasks, select 'Shipments'.",
+        "expectedResult": "Show Tasks set to 'Shipments'.",
+        "expectedResultBasis": "RECORDED",
+        "sourceStepIds": [
+          "56def8d6-3b14-4617-8b77-1dc08a7e5186"
+        ],
+        "evidenceRefs": [
+          {
+            "sourceStepId": "56def8d6-3b14-4617-8b77-1dc08a7e5186",
+            "screenshotId": 7,
+            "screenshot": "screenshots/0007.jpg"
+          }
+        ],
+        "confidence": 0.95
+      },
+      {
+        "id": "36e4e30b-28c3-4d82-a493-c516282c53a8",
+        "sequence": 5,
+        "title": "Open Manage Shipment Lines",
+        "instruction": "Click Manage Shipment Lines.",
+        "expectedResult": "Manage Shipment Lines option selected / opened (navigation to Manage Shipment Lines expected).",
+        "expectedResultBasis": "INFERRED",
+        "sourceStepIds": [
+          "36e4e30b-28c3-4d82-a493-c516282c53a8"
+        ],
+        "evidenceRefs": [
+          {
+            "sourceStepId": "36e4e30b-28c3-4d82-a493-c516282c53a8",
+            "screenshotId": 8,
+            "screenshot": "screenshots/0008.jpg"
+          }
+        ],
+        "confidence": 0.85
+      },
+      {
+        "id": "4237287b-971b-44ea-a2d9-e23502ddd7d0",
+        "sequence": 6,
+        "title": "Set filters in Manage Shipment Lines",
+        "instruction": "Select 'Before' in Scheduled Ship Date Operator, then enter 'AUSSYRL' in Ship-from Organization.",
+        "expectedResult": "Scheduled Ship Date Operator set to 'Before' and Ship-from Organization set to 'AUSSYRL'.",
+        "expectedResultBasis": "RECORDED",
+        "sourceStepIds": [
+          "4237287b-971b-44ea-a2d9-e23502ddd7d0"
+        ],
+        "evidenceRefs": [
+          {
+            "sourceStepId": "4237287b-971b-44ea-a2d9-e23502ddd7d0",
+            "screenshotId": 11,
+            "screenshot": "screenshots/0011.jpg"
+          }
+        ],
+        "confidence": 0.97
+      },
+      {
+        "id": "a4dac725-e661-4b99-bebf-703444956a80",
+        "sequence": 7,
+        "title": "Search shipment lines",
+        "instruction": "Click Search in Advanced Search.",
+        "expectedResult": "Search executed; search results display is not captured in this recording.",
+        "expectedResultBasis": "UNKNOWN",
+        "sourceStepIds": [
+          "a4dac725-e661-4b99-bebf-703444956a80"
+        ],
+        "evidenceRefs": [
+          {
+            "sourceStepId": "a4dac725-e661-4b99-bebf-703444956a80",
+            "screenshotId": 12,
+            "screenshot": "screenshots/0012.jpg"
+          }
+        ],
+        "confidence": 0.75
+      }
+    ],
+    "outcome": {
+      "text": "The recording shows navigation to Manage Shipment Lines, filters set (Scheduled Ship Date Operator = Before; Ship-from Organization = AUSSYRL) and the Search button clicked. The recording does not capture search results or a confirmation that results were returned.",
+      "basis": "RECORDED",
+      "confidence": 0.8
+    },
+    "tags": [
+      "inventory",
+      "shipments",
+      "manage shipment lines",
+      "advanced search"
+    ]
+  },
+  "coverage": {
+    "sourceStepCount": 10,
+    "accountedStepIds": [
+      "185ae5fd-14d5-4feb-802e-353ae4e3a41b",
+      "2e4ce4ea-f02f-4b5f-9050-1574a1bf4493",
+      "54ad2690-46c0-4f91-a323-0b90af042b05",
+      "8d22ca74-043c-42c0-91d6-846e2196ad3c",
+      "95787d05-1e5f-422a-82c6-419391668f54",
+      "6a4108aa-f692-4876-8a67-7afb826ef77b",
+      "56def8d6-3b14-4617-8b77-1dc08a7e5186",
+      "36e4e30b-28c3-4d82-a493-c516282c53a8",
+      "4237287b-971b-44ea-a2d9-e23502ddd7d0",
+      "a4dac725-e661-4b99-bebf-703444956a80"
+    ],
+    "ignoredSteps": [],
+    "unassignedStepIds": [],
+    "coveragePercent": 100
+  },
+  "warnings": [],
+  "confidence": 0.9
+}
