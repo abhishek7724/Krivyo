@@ -1,6 +1,6 @@
 
 const state={
-  process:null,guide:null,ai:null,rawSummary:null,
+  process:null,guide:null,ai:null,rawSummary:null,user:null,auth:null,
   selected:0,edits:new Map(),view:'home',mode:'empty'
 };
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
@@ -79,8 +79,43 @@ function wireAi(){wirePromptButtons();$('#composer').onsubmit=e=>{e.preventDefau
 function wireMisc(){$('#exportCsv').onclick=exportCsv;$('#downloadPdf').onclick=()=>toast('Enhanced PDF generation is the next guide milestone');$('#runTest').onclick=()=>toast('UAT execution is a later Test Cases milestone');$('#newCapture').onclick=()=>toast('The Chrome extension remains the capture entry point')}
 
 
+
+function renderSignedInUser(user){
+  if(!user)return;
+  const name=state.auth?.userDisplayName(user)||user.email||'Krivyo User';
+  const initial=state.auth?.userInitial(user)||'K';
+  const avatar=$('#profileAvatar');
+  const nameEl=$('#profileName');
+  const emailEl=$('#profileEmail');
+  if(avatar)avatar.textContent=initial;
+  if(nameEl)nameEl.textContent=name;
+  if(emailEl)emailEl.textContent=user.email||'Workspace member';
+}
+
+function wireAuthentication(){
+  const button=$('#signOutButton');
+  if(!button||!state.auth)return;
+  button.onclick=async()=>{
+    button.disabled=true;
+    button.textContent='Signing out…';
+    try{
+      await state.auth.signOutUser();
+    }catch(error){
+      console.error(error);
+      button.disabled=false;
+      button.textContent='Sign out';
+      toast('Could not sign out');
+    }
+  };
+}
+
 async function init(){
   try{
+    state.auth=await import('./auth-client.js');
+    state.user=await state.auth.requireAuthenticatedUser();
+    if(!state.user)return;
+    renderSignedInUser(state.user);
+
     const captureId=captureParam();
     if(captureId){
       const accessToken=accessParam();
@@ -99,7 +134,7 @@ async function init(){
       state.mode='empty';
     }
     initSummary();renderSteps();renderGuide();renderTest();renderDetails();
-    wireGuide();wireNav();wirePalette();wireAi();wireMisc();
+    wireGuide();wireNav();wirePalette();wireAi();wireMisc();wireAuthentication();
     activate(requestedView()||(captureId?'guides':'home'),false);
   }catch(err){
     console.error(err);

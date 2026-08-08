@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<meta name="description" content="Sign in to Krivyo Workspace." />
+<meta name="theme-color" content="#172B27" />
+<title>Sign in — Krivyo Workspace</title>
+<link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="login.css" />
+</head>
+<body>
+<div class="auth-shell">
+  <section class="auth-brand-panel" aria-label="Krivyo">
+    <a class="auth-brand" href="https://krivyo.com">
+      <img src="../assets/krivyo-mark.svg" alt="" />
+      <span><strong>Krivyo</strong><small>Workspace</small></span>
+    </a>
+
+    <div class="brand-copy">
+      <p class="eyebrow">PROCESS INTELLIGENCE WORKSPACE</p>
+      <h1>Turn captured work into <em>usable knowledge.</em></h1>
+      <p class="lead">
+        Create process guides, generate test scripts and keep every AI output
+        traceable to the work that actually happened.
+      </p>
+
+      <div class="auth-proof">
+        <div><span>01</span><p><strong>Capture</strong><small>Record the real process.</small></p></div>
+        <div><span>02</span><p><strong>Understand</strong><small>AI adds business context.</small></p></div>
+        <div><span>03</span><p><strong>Use</strong><small>Guide, Test/UAT and future DAP.</small></p></div>
+      </div>
+    </div>
+
+    <div class="brand-foot">
+      <span>Privacy-first by design</span>
+      <span>•</span>
+      <span>Source-linked AI</span>
+    </div>
+  </section>
+
+  <main class="auth-main">
+    <div class="auth-card">
+      <div class="mobile-brand">
+        <img src="../assets/krivyo-mark.svg" alt="" />
+        <span><strong>Krivyo</strong><small>Workspace</small></span>
+      </div>
+
+      <div id="authMessage" class="auth-message" role="status" aria-live="polite"></div>
+
+      <section id="standardAuth">
+        <div class="auth-heading">
+          <p class="eyebrow">WELCOME TO KRIVYO</p>
+          <h2 id="authTitle">Sign in to your workspace</h2>
+          <p id="authSubtitle">Continue where your captured process left off.</p>
+        </div>
+
+        <div class="auth-tabs" role="tablist">
+          <button id="signInTab" class="active" type="button" role="tab">Sign in</button>
+          <button id="signUpTab" type="button" role="tab">Create account</button>
+        </div>
+
+        <form id="signInForm" class="auth-form">
+          <label>
+            <span>Email address</span>
+            <input id="signInEmail" type="email" autocomplete="email" required placeholder="you@company.com" />
+          </label>
+
+          <label>
+            <span class="label-row">Password <button id="forgotPassword" type="button">Forgot password?</button></span>
+            <div class="password-wrap">
+              <input id="signInPassword" type="password" autocomplete="current-password" required placeholder="Enter your password" />
+              <button class="password-toggle" type="button" data-toggle-password="signInPassword">Show</button>
+            </div>
+          </label>
+
+          <button id="signInButton" class="primary-button" type="submit">
+            <span>Sign in</span><b>→</b>
+          </button>
+        </form>
+
+        <form id="signUpForm" class="auth-form hidden">
+          <label>
+            <span>Your name</span>
+            <input id="signUpName" type="text" autocomplete="name" required placeholder="Abhishek Sinha" />
+          </label>
+
+          <label>
+            <span>Email address</span>
+            <input id="signUpEmail" type="email" autocomplete="email" required placeholder="you@company.com" />
+          </label>
+
+          <label>
+            <span>Password</span>
+            <div class="password-wrap">
+              <input id="signUpPassword" type="password" autocomplete="new-password" required minlength="8" placeholder="At least 8 characters" />
+              <button class="password-toggle" type="button" data-toggle-password="signUpPassword">Show</button>
+            </div>
+          </label>
+
+          <p class="form-note">By creating an account, you agree to Krivyo's privacy practices and workspace terms.</p>
+
+          <button id="signUpButton" class="primary-button" type="submit">
+            <span>Create account</span><b>→</b>
+          </button>
+        </form>
+
+        <p class="auth-help">
+          Need help? <a href="mailto:support@krivyo.com">Contact Krivyo support</a>
+        </p>
+      </section>
+
+      <section id="resetAuth" class="hidden">
+        <button id="backToSignIn" class="back-link" type="button">← Back to sign in</button>
+        <div class="auth-heading">
+          <p class="eyebrow">SECURE YOUR ACCOUNT</p>
+          <h2>Set a new password</h2>
+          <p>Choose a new password for your Krivyo account.</p>
+        </div>
+        <form id="resetPasswordForm" class="auth-form">
+          <label>
+            <span>New password</span>
+            <div class="password-wrap">
+              <input id="newPassword" type="password" autocomplete="new-password" required minlength="8" placeholder="At least 8 characters" />
+              <button class="password-toggle" type="button" data-toggle-password="newPassword">Show</button>
+            </div>
+          </label>
+          <label>
+            <span>Confirm new password</span>
+            <div class="password-wrap">
+              <input id="confirmPassword" type="password" autocomplete="new-password" required minlength="8" placeholder="Repeat your password" />
+              <button class="password-toggle" type="button" data-toggle-password="confirmPassword">Show</button>
+            </div>
+          </label>
+          <button id="resetPasswordButton" class="primary-button" type="submit">
+            <span>Update password</span><b>→</b>
+          </button>
+        </form>
+      </section>
+    </div>
+
+    <footer class="auth-footer">
+      <a href="https://krivyo.com/privacy.html">Privacy</a>
+      <span>•</span>
+      <a href="https://krivyo.com">krivyo.com</a>
+    </footer>
+  </main>
+</div>
+
+<script src="workspace-config.js"></script>
+<script type="module" src="login.js"></script>
+</body>
+</html>
