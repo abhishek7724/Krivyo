@@ -1,3 +1,6 @@
-// Future live workspace configuration example.
-// Never place OPENAI_API_KEY, Supabase service-role keys, or KRIVYO_AI_INTERNAL_TOKEN here.
-window.KRIVYO_WORKSPACE_CONFIG = { mode: "demo", workspaceApiBaseUrl: "" };
+// Public browser configuration only.
+// Never place private API keys or service credentials here.
+window.KRIVYO_WORKSPACE_CONFIG = {
+  mode: "live",
+  workspaceApiUrl: "https://YOUR_PROJECT_REF.supabase.co/functions/v1/workspace-data"
+};
