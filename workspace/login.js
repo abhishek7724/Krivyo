@@ -12,6 +12,76 @@ const state = {
   recovery: false
 };
 
+const EXTENSION_REDIRECT_KEY = "krivyo.extension.redirect";
+
+function extensionRedirect() {
+  try {
+    const fromUrl = new URLSearchParams(location.search).get("ext_redirect");
+    if (fromUrl && /^https:\/\/[a-z0-9]+\.chromiumapp\.org\//i.test(fromUrl)) {
+      sessionStorage.setItem(EXTENSION_REDIRECT_KEY, fromUrl);
+      return fromUrl;
+    }
+    return sessionStorage.getItem(EXTENSION_REDIRECT_KEY) || null;
+  } catch {
+    return null;
+  }
+}
+
+function extensionIdFromRedirect(redirect) {
+  try {
+    const host = new URL(redirect).hostname;
+    const match = host.match(/^([a-z0-9]+)\.chromiumapp\.org$/i);
+    return match?.[1] || null;
+  } catch {
+    return null;
+  }
+}
+
+async function notifyExtensionDirectly(session) {
+  const redirect = extensionRedirect();
+  const extensionId = extensionIdFromRedirect(redirect);
+
+  if (!extensionId || !window.chrome?.runtime?.sendMessage || !session) {
+    return false;
+  }
+
+  try {
+    const result = await chrome.runtime.sendMessage(extensionId, {
+      type: "KRIVYO_AUTH_SESSION",
+      access_token: session.access_token,
+      refresh_token: session.refresh_token,
+      expires_in: session.expires_in || 3600
+    });
+    return result?.success === true;
+  } catch {
+    return false;
+  }
+}
+
+async function completeExtensionAuthIfRequested() {
+  const redirect = extensionRedirect();
+  if (!redirect) return false;
+
+  if (!/^https:\/\/[a-z0-9]+\.chromiumapp\.org\//i.test(redirect)) {
+    sessionStorage.removeItem(EXTENSION_REDIRECT_KEY);
+    return false;
+  }
+
+  const { data, error } = await supabase.auth.getSession();
+  const session = data?.session;
+  if (error || !session?.access_token || !session?.refresh_token) return false;
+
+  await notifyExtensionDirectly(session);
+  sessionStorage.removeItem(EXTENSION_REDIRECT_KEY);
+  const fragment = new URLSearchParams({
+    access_token: session.access_token,
+    refresh_token: session.refresh_token,
+    expires_in: String(session.expires_in || 3600)
+  });
+  window.location.replace(`${redirect}#${fragment.toString()}`);
+  return true;
+}
+
 function setMessage(message = "", type = "") {
   const box = $("#authMessage");
   box.textContent = message;
@@ -70,7 +140,9 @@ async function redirectIfAlreadySignedIn() {
 
   const user = await getAuthenticatedUser();
   if (user && !state.recovery) {
-    window.location.replace(destinationAfterAuth());
+    if (!(await completeExtensionAuthIfRequested())) {
+      window.location.replace(destinationAfterAuth());
+    }
   }
 }
 
@@ -105,7 +177,9 @@ $("#signInForm").addEventListener("submit", async (event) => {
 
     if (error) throw error;
 
-    window.location.replace(destinationAfterAuth());
+    if (!(await completeExtensionAuthIfRequested())) {
+      window.location.replace(destinationAfterAuth());
+    }
   } catch (error) {
     setMessage(
       error?.message || "Could not sign in. Check your email and password.",
@@ -128,9 +202,11 @@ $("#signUpForm").addEventListener("submit", async (event) => {
   setBusy(button, true, "Create account");
 
   try {
-    const redirectTo =
-      window.KRIVYO_WORKSPACE_CONFIG?.authRedirectUrl ||
-      `${location.origin}/workspace/login.html`;
+    const extRedirect = extensionRedirect();
+    const redirectTo = extRedirect
+      ? `${location.origin}/workspace/login.html?extension=1&ext_redirect=${encodeURIComponent(extRedirect)}`
+      : (window.KRIVYO_WORKSPACE_CONFIG?.authRedirectUrl ||
+        `${location.origin}/workspace/login.html`);
 
     const { data, error } = await supabase.auth.signUp({
       email,
@@ -146,7 +222,9 @@ $("#signUpForm").addEventListener("submit", async (event) => {
     if (error) throw error;
 
     if (data?.session) {
-      window.location.replace(destinationAfterAuth());
+      if (!(await completeExtensionAuthIfRequested())) {
+        window.location.replace(destinationAfterAuth());
+      }
       return;
     }
 
@@ -225,6 +303,15 @@ $("#resetPasswordForm").addEventListener("submit", async (event) => {
 supabase.auth.onAuthStateChange((event) => {
   if (event === "PASSWORD_RECOVERY") {
     showResetMode();
+    return;
+  }
+
+  if (event === "SIGNED_IN" && extensionRedirect()) {
+    setTimeout(() => {
+      completeExtensionAuthIfRequested().catch(error => {
+        console.error("Extension authentication handoff failed:", error);
+      });
+    }, 0);
   }
 });
 

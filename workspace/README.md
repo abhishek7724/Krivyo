@@ -1,70 +1,40 @@
-# Krivyo Workspace v0.4 — Supabase Auth
+# Krivyo Workspace v0.5 — Capture-first authenticated workspace
 
-This version adds the first production authentication layer.
+This patch completes the Workspace side of Krivyo Chrome Extension v0.3.0.
 
 ## Added
 
-- `/workspace/login.html`
-- Email + password sign in
-- Create account
-- Email confirmation redirect
-- Forgot password
-- Password recovery / update
-- Persistent Supabase Auth session
-- Workspace authentication guard
-- Dynamic signed-in user name/email
-- Sign out
-- Existing secure capture URL is preserved through login using `sessionStorage`
+- Existing Supabase email/password authentication remains required.
+- `extension-login.html` bridges Chrome Identity sign-in to the existing Krivyo login.
+- A signed-in web session can hand its access/refresh session back to the Krivyo extension.
+- Workspace capture URLs no longer require temporary `#access=` links.
+- Capture ownership is validated by the authenticated user through `workspace-data` v2.
+- New **Source Capture** view renders every recorded source step.
+- Private screenshots are loaded through one-hour signed Storage URLs only after ownership validation.
+- Guide view uses the corresponding source screenshot while keeping AI wording 1:1 with source steps.
+- Test/UAT view continues using `ai-process-model.json`, where business grouping is allowed.
+- AI generation status is polled after a newly saved capture opens.
+- Workspace Home now lists the signed-in user's recent captures.
 
-## Transitional architecture
+## Do not overwrite your live config
 
-Authentication is now required to enter the Workspace.
+This release is intended to be copied over the existing `/workspace/` folder **without replacing `workspace-config.js`**.
 
-For this milestone, capture loading still uses the existing temporary signed capture token:
+Your existing `workspace-config.js` already contains your real Supabase publishable browser key. Keep it.
 
-`?capture=CAP-...&view=guides#access=...`
+The companion patch ZIP intentionally excludes `workspace-config.js`.
 
-After login, the user is returned to that exact URL.
+## Backend required
 
-Next milestone:
-`captures` table + `user_id` ownership + RLS, then remove `#access=` from normal product URLs.
+- Run `workspace-foundation.sql`.
+- Deploy `capture-sync`.
+- Replace `workspace-data` with v2.
+- Keep existing `enhance-guide` and `enhance-process` deployed.
 
-## Required local configuration before pushing
+## URL
 
-Open:
+A completed extension capture opens:
 
-`workspace/workspace-config.js`
+`https://krivyo.com/workspace/?capture=<uuid>&view=recording`
 
-Replace:
-
-`PASTE_SUPABASE_PUBLISHABLE_KEY_HERE`
-
-with your Supabase **publishable** browser key (`sb_publishable_...`).
-
-Do not use a secret key or service-role key.
-
-The project URL is already configured.
-
-## Supabase Auth dashboard
-
-These should already be configured:
-
-Site URL:
-`https://krivyo.com/workspace/`
-
-Redirect URLs:
-- `https://krivyo.com/workspace/`
-- `https://krivyo.com/workspace/**`
-
-Email provider:
-- enabled
-- signups enabled
-- email confirmation enabled
-
-## URLs
-
-Login:
-`https://krivyo.com/workspace/login.html`
-
-Workspace:
-`https://krivyo.com/workspace/`
+The logged-in session determines whether the user may load that UUID.

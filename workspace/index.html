@@ -17,7 +17,7 @@
 <div class="shell">
   <aside class="left-nav">
     <div class="brand-row">
-      <a class="brand" href="https://krivyo.com"><img src="../assets/krivyo-mark.png" alt=""/><span><strong>Krivyo</strong><small>Workspace</small></span></a>
+      <a class="brand" href="https://krivyo.com"><img src="../assets/krivyo-mark.svg" alt=""/><span><strong>Krivyo</strong><small>Workspace</small></span></a>
       <button class="icon-btn" id="collapseNav" aria-label="Collapse navigation">‹</button>
     </div>
     <div class="workspace-switch"><span class="ws-avatar">K</span><div><strong>Krivyo Workspace</strong><small>Personal workspace</small></div><span>⌄</span></div>
@@ -47,11 +47,11 @@
       <section class="view active" data-panel="home">
         <div class="hero">
           <div class="hero-copy"><p class="eyebrow">KRIVYO WORKSPACE</p><h1>Turn captured work into <em>usable knowledge.</em></h1><p>One reviewed recording becomes a guide, test script and future process intelligence — while every AI output remains linked to the original source.</p><div class="hero-actions"><button class="button light" data-open="guides">Open latest guide</button><button class="button outline" data-open="tests">View test script</button></div></div>
-          <div class="orbit"><div class="orbit-ring r1"></div><div class="orbit-ring r2"></div><div class="orbit-core"><img src="../assets/krivyo-mark.png" alt=""/><span>One capture</span></div><div class="orbit-node n1"><strong>Guide</strong><span id="orbitGuide">10 steps</span></div><div class="orbit-node n2"><strong>Test</strong><span id="orbitTest">7 steps</span></div><div class="orbit-node n3"><strong>DAP</strong><span>Future</span></div></div>
+          <div class="orbit"><div class="orbit-ring r1"></div><div class="orbit-ring r2"></div><div class="orbit-core"><img src="../assets/krivyo-mark.svg" alt=""/><span>One capture</span></div><div class="orbit-node n1"><strong>Guide</strong><span id="orbitGuide">10 steps</span></div><div class="orbit-node n2"><strong>Test</strong><span id="orbitTest">7 steps</span></div><div class="orbit-node n3"><strong>DAP</strong><span>Future</span></div></div>
         </div>
         <div class="metrics">
-          <article><span class="micon mint">▤</span><div><small>Process guides</small><strong>1</strong><p>AI wording ready</p></div></article>
-          <article><span class="micon amber">✓</span><div><small>Test cases</small><strong>1</strong><p id="metricTest">7 execution steps</p></div></article>
+          <article><span class="micon mint">▤</span><div><small>Process guides</small><strong id="metricGuides">0</strong><p>AI wording ready</p></div></article>
+          <article><span class="micon amber">✓</span><div><small>Test cases</small><strong id="metricCases">0</strong><p id="metricTest">0 execution steps</p></div></article>
           <article><span class="micon green">↳</span><div><small>Traceability</small><strong id="metricCoverage">100%</strong><p>Source steps accounted for</p></div></article>
           <article><span class="micon red">◉</span><div><small>Latest capture</small><strong id="metricRecorded">10</strong><p>Reviewed recorder steps</p></div></article>
         </div>
@@ -59,6 +59,15 @@
           <section class="card"><div class="card-head"><div><p class="eyebrow">CONTINUE WORKING</p><h2>Latest capture</h2></div><button class="text-btn" data-open="guides">Open guide →</button></div><div class="capture-row"><span class="oracle">OR</span><div class="capture-copy"><span class="status"><i></i>AI enhanced</span><h3 id="homeTitle">Loading…</h3><p id="homeDesc">Loading process context…</p><div class="capture-meta"><span id="homeApp">—</span><b>•</b><span id="homeCapture">—</span></div></div><div class="capture-stats"><div><strong id="guideCount">10</strong><span>Guide steps</span></div><div><strong id="testCount">7</strong><span>Test steps</span></div></div></div></section>
           <section class="card"><div class="card-head"><div><p class="eyebrow">AI ACTIVITY</p><h2>What Krivyo created</h2></div><span class="ready">● Ready</span></div><div class="activity"><div><span>✦</span><div><strong>Guide wording enhanced</strong><p>One-to-one wording, no AI grouping.</p></div><b>v1.1</b></div><div><span>✓</span><div><strong>Business test flow generated</strong><p>Recorded actions grouped for Test/UAT.</p></div><b>100%</b></div><div><span>↳</span><div><strong>Source traceability preserved</strong><p>Every AI output maps back to recorder steps.</p></div><b>Locked</b></div></div></section>
         </div>
+        <section class="card capture-library-card">
+          <div class="card-head"><div><p class="eyebrow">YOUR WORKSPACE</p><h2>Recent captures</h2></div><span class="ready" id="captureLibraryCount">0 captures</span></div>
+          <div class="workspace-capture-list" id="workspaceCaptureList"></div>
+        </section>
+      </section>
+
+      <section class="view" data-panel="recording">
+        <div class="page-head"><div><p class="eyebrow">SOURCE CAPTURE</p><h1 id="recordingTitle">Recorded process</h1><p id="recordingSubtitle">The source-of-truth sequence captured by Krivyo. AI outputs remain linked back to these steps.</p></div><div><span class="ready" id="recordingCloudState">● Saved to Workspace</span></div></div>
+        <div class="recording-layout" id="recordingList"></div>
       </section>
 
       <section class="view" data-panel="guides">
@@ -66,7 +75,7 @@
         <div class="guide-layout">
           <aside class="card steps-panel"><div class="steps-head"><strong>Guide steps</strong><span id="stepsCount">10 steps</span><input id="stepSearch" placeholder="Search steps"/></div><div id="stepList" class="step-list"></div></aside>
           <div class="guide-main">
-            <article class="card evidence-card"><div class="evidence-head"><div><span id="stepLabel">STEP 01 OF 10</span><b id="actionBadge">CLICK</b></div><span>🔒 Screenshot private</span></div><div class="evidence-stage"><div class="browser-bar"><span></span><span></span><span></span><div id="screenContext">Captured evidence</div></div><div class="private-shot"><div class="ring-lock">▣</div><strong>Screenshot not shared to cloud</strong><p>Visual evidence stays private unless the user explicitly chooses to share it.</p><span>Privacy-first evidence</span></div></div></article>
+            <article class="card evidence-card"><div class="evidence-head"><div><span id="stepLabel">STEP 01 OF 10</span><b id="actionBadge">CLICK</b></div><span>🔒 Private Workspace evidence</span></div><div class="evidence-stage"><div class="browser-bar"><span></span><span></span><span></span><div id="screenContext">Captured evidence</div></div><img id="guideScreenshot" class="guide-screenshot" alt="Captured browser step"/><div id="guideScreenshotFallback" class="private-shot"><div class="ring-lock">▣</div><strong>Screenshot unavailable</strong><p>The capture is saved, but this step does not currently have visual evidence available.</p><span>Source-linked evidence</span></div></div></article>
             <article class="card editor-card"><div class="editor-top"><div><span class="step-no" id="stepNo">01</span><span class="ai-chip">✦ AI ENHANCED</span></div><div><button class="text-btn" id="restoreStep">Restore</button><button class="button dark" id="editStep">Edit wording</button></div></div><label>Step title</label><h2 id="guideStepTitle" contenteditable="false">Loading…</h2><label>Instruction</label><p id="guideStepDesc" contenteditable="false">Loading…</p><div class="provenance"><span>↳ Linked to source</span><code id="sourceId">sourceStepId</code><strong id="confidence">100% confidence</strong></div></article>
           </div>
         </div>
@@ -83,9 +92,10 @@
 
       <section class="view" data-panel="analytics"><div class="page-head"><div><p class="eyebrow">PROCESS INTELLIGENCE</p><h1>See where work gets complicated.</h1><p>Turn interaction data into signals for complexity, repetition and automation opportunities.</p></div><span class="roadmap">Roadmap</span></div><div class="card analytics"><div class="bars"><i style="height:45%"></i><i style="height:70%"></i><i style="height:56%"></i><i style="height:85%"></i><i style="height:66%"></i><i style="height:92%"></i></div><div><p class="eyebrow">COMING NEXT</p><h2>Process complexity over time</h2><p>Compare step count, repeated actions, manual entry and process variants across captures.</p></div></div></section>
 
-      <section class="view" data-panel="settings"><div class="page-head"><div><p class="eyebrow">SETTINGS</p><h1>Workspace controls</h1><p>Keep storage, privacy and AI provenance visible and understandable.</p></div></div><div class="settings-grid"><article class="card"><h3>Capture storage</h3><dl id="captureDetails"></dl></article><article class="card"><h3>AI provenance</h3><dl id="aiDetails"></dl></article><article class="card"><h3>Privacy state</h3><dl><div><dt>Process + raw JSON</dt><dd><span class="good-dot"></span>Stored after first PDF download</dd></div><div><dt>Diagnostics</dt><dd>Only after ≤3★ or explicit issue</dd></div><div><dt>Screenshots</dt><dd><span class="private-dot"></span>Not shared</dd></div></dl></article><article class="card"><h3>Storage structure</h3><pre>captures/&lt;captureId&gt;/
+      <section class="view" data-panel="settings"><div class="page-head"><div><p class="eyebrow">SETTINGS</p><h1>Workspace controls</h1><p>Keep storage, privacy and AI provenance visible and understandable.</p></div></div><div class="settings-grid"><article class="card"><h3>Capture storage</h3><dl id="captureDetails"></dl></article><article class="card"><h3>AI provenance</h3><dl id="aiDetails"></dl></article><article class="card"><h3>Privacy state</h3><dl><div><dt>Process + raw JSON</dt><dd><span class="good-dot"></span>Stored when capture ends</dd></div><div><dt>Diagnostics</dt><dd>Only for explicit feedback/support</dd></div><div><dt>Screenshots</dt><dd><span class="good-dot"></span>Stored privately with capture</dd></div></dl></article><article class="card"><h3>Storage structure</h3><pre>captures/&lt;uuid&gt;/
 ├── process-model.json
 ├── raw-session.json
+├── screenshots/
 ├── guide-model.json
 └── ai-process-model.json</pre></article></div></section>
     </div>
@@ -100,7 +110,7 @@
   </aside>
 </div>
 <div class="toast" id="toast"></div>
-<div class="palette" id="palette"><button class="palette-bg"></button><div class="palette-box"><div class="palette-search"><input id="commandSearch" placeholder="Search workspace…"/><kbd>Esc</kbd></div><p>Navigate</p><button data-command="home">⌂ <strong>Home</strong><small>Workspace overview</small></button><button data-command="guides">▤ <strong>Guides</strong><small>AI-enhanced process guide</small></button><button data-command="tests">✓ <strong>Test Cases</strong><small>Generated test script</small></button><button data-command="settings">⚙ <strong>Settings</strong><small>Capture, AI and privacy</small></button></div></div>
+<div class="palette" id="palette"><button class="palette-bg"></button><div class="palette-box"><div class="palette-search"><input id="commandSearch" placeholder="Search workspace…"/><kbd>Esc</kbd></div><p>Navigate</p><button data-command="home">⌂ <strong>Home</strong><small>Workspace overview</small></button><button data-command="recording">◉ <strong>Capture</strong><small>Original recorded process</small></button><button data-command="guides">▤ <strong>Guides</strong><small>AI-enhanced process guide</small></button><button data-command="tests">✓ <strong>Test Cases</strong><small>Generated test script</small></button><button data-command="settings">⚙ <strong>Settings</strong><small>Capture, AI and privacy</small></button></div></div>
 <script src="workspace-config.js"></script>
 <script src="workspace.js" defer></script>
 </body>

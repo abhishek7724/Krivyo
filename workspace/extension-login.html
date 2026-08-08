@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Connect Krivyo Extension</title>
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+  <style>
+    html,body{height:100%;margin:0;font-family:Inter,Arial,sans-serif;background:#f7f8f7;color:#17312b}
+    body{display:grid;place-items:center}.box{width:min(88vw,380px);text-align:center}.mark{width:54px;height:54px;margin:auto;display:grid;place-items:center;border-radius:15px;background:#17312b;color:#fff;font-weight:800}.box h1{font-size:26px;margin:18px 0 8px}.box p{color:#71807b;font-size:13px;line-height:1.6}.spinner{width:24px;height:24px;margin:20px auto;border:3px solid #dbe7e3;border-top-color:#24584d;border-radius:50%;animation:s .8s linear infinite}@keyframes s{to{transform:rotate(360deg)}}</style>
+</head>
+<body>
+  <div class="box">
+    <div class="mark">K</div>
+    <h1>Connect Krivyo</h1>
+    <p>Opening secure sign in for your Krivyo browser extension.</p>
+    <div class="spinner"></div>
+  </div>
+<script>
+(function(){
+  const redirect=new URLSearchParams(location.search).get('redirect');
+  if(!redirect || !/^https:\/\/[a-z0-9]+\.chromiumapp\.org\//i.test(redirect)){
+    document.querySelector('.box p').textContent='This extension sign-in request is invalid.';
+    document.querySelector('.spinner').style.display='none';
+    return;
+  }
+  sessionStorage.setItem('krivyo.extension.redirect',redirect);
+  location.replace('/workspace/login.html?extension=1&ext_redirect='+encodeURIComponent(redirect));
+})();
+</script>
+</body>
+</html>
