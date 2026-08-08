@@ -17,7 +17,7 @@
 <div class="shell">
   <aside class="left-nav">
     <div class="brand-row">
-      <a class="brand" href="https://krivyo.com"><img src="../assets/krivyo-mark.png" alt=""/><span><strong>Krivyo</strong><small>Workspace</small></span></a>
+      <a class="brand" href="https://krivyo.com"><img src="../assets/krivyo-mark.svg" alt=""/><span><strong>Krivyo</strong><small>Workspace</small></span></a>
       <button class="icon-btn" id="collapseNav" aria-label="Collapse navigation">‹</button>
     </div>
     <div class="workspace-switch"><span class="ws-avatar">K</span><div><strong>Krivyo Workspace</strong><small>Personal workspace</small></div><span>⌄</span></div>
@@ -47,7 +47,7 @@
       <section class="view active" data-panel="home">
         <div class="hero">
           <div class="hero-copy"><p class="eyebrow">KRIVYO WORKSPACE</p><h1>Turn captured work into <em>usable knowledge.</em></h1><p>One reviewed recording becomes a guide, test script and future process intelligence — while every AI output remains linked to the original source.</p><div class="hero-actions"><button class="button light" data-open="guides">Open latest guide</button><button class="button outline" data-open="tests">View test script</button></div></div>
-          <div class="orbit"><div class="orbit-ring r1"></div><div class="orbit-ring r2"></div><div class="orbit-core"><img src="../assets/krivyo-mark.png" alt=""/><span>One capture</span></div><div class="orbit-node n1"><strong>Guide</strong><span id="orbitGuide">10 steps</span></div><div class="orbit-node n2"><strong>Test</strong><span id="orbitTest">7 steps</span></div><div class="orbit-node n3"><strong>DAP</strong><span>Future</span></div></div>
+          <div class="orbit"><div class="orbit-ring r1"></div><div class="orbit-ring r2"></div><div class="orbit-core"><img src="../assets/krivyo-mark.svg" alt=""/><span>One capture</span></div><div class="orbit-node n1"><strong>Guide</strong><span id="orbitGuide">10 steps</span></div><div class="orbit-node n2"><strong>Test</strong><span id="orbitTest">7 steps</span></div><div class="orbit-node n3"><strong>DAP</strong><span>Future</span></div></div>
         </div>
         <div class="metrics">
           <article><span class="micon mint">▤</span><div><small>Process guides</small><strong id="metricGuides">0</strong><p>AI wording ready</p></div></article>
@@ -66,18 +66,25 @@
       </section>
 
       <section class="view" data-panel="recording">
-        <div class="page-head"><div><p class="eyebrow">SOURCE CAPTURE</p><h1 id="recordingTitle">Recorded process</h1><p id="recordingSubtitle">The source-of-truth sequence captured by Krivyo. AI outputs remain linked back to these steps.</p></div><div><span class="ready" id="recordingCloudState">● Saved to Workspace</span></div></div>
+        <div class="page-head"><div><p class="eyebrow">SOURCE CAPTURE</p><h1 id="recordingTitle">Recorded process</h1><p id="recordingSubtitle">The immutable source capture. Guide edits never change this original evidence.</p></div><div class="page-actions"><span class="ready" id="recordingCloudState">● Saved to Workspace</span><button class="button danger-ghost" id="discardCaptureRecording" type="button">Discard recording</button></div></div>
         <div class="recording-layout" id="recordingList"></div>
       </section>
 
       <section class="view" data-panel="guides">
-        <div class="page-head"><div><p class="eyebrow">PROCESS GUIDE</p><h1 id="guideTitlePage">Process Guide</h1><p id="guideSubtitle">AI-enhanced wording with the reviewed sequence preserved.</p></div><div><button class="button secondary" id="restoreAll">Restore AI wording</button><button class="button primary" id="downloadPdf">Download enhanced PDF</button></div></div>
+        <div class="page-head guide-page-head">
+          <div><p class="eyebrow">PROCESS GUIDE</p><h1 id="guideTitlePage">Process Guide</h1><p id="guideSubtitle">Scroll naturally through the guide. The step rail follows your position automatically.</p></div>
+          <div class="page-actions"><button class="button danger-ghost" id="discardCaptureGuide" type="button">Discard recording</button><button class="button secondary" id="restoreAll">Reset guide changes</button><button class="button primary" id="downloadPdf">Export PDF</button></div>
+        </div>
         <div class="guide-layout">
-          <aside class="card steps-panel"><div class="steps-head"><strong>Guide steps</strong><span id="stepsCount">10 steps</span><input id="stepSearch" placeholder="Search steps"/></div><div id="stepList" class="step-list"></div></aside>
-          <div class="guide-main">
-            <article class="card evidence-card"><div class="evidence-head"><div><span id="stepLabel">STEP 01 OF 10</span><b id="actionBadge">CLICK</b></div><span>🔒 Private Workspace evidence</span></div><div class="evidence-stage"><div class="browser-bar"><span></span><span></span><span></span><div id="screenContext">Captured evidence</div></div><img id="guideScreenshot" class="guide-screenshot" alt="Captured browser step"/><div id="guideScreenshotFallback" class="private-shot"><div class="ring-lock">▣</div><strong>Screenshot unavailable</strong><p>The capture is saved, but this step does not currently have visual evidence available.</p><span>Source-linked evidence</span></div></div></article>
-            <article class="card editor-card"><div class="editor-top"><div><span class="step-no" id="stepNo">01</span><span class="ai-chip">✦ AI ENHANCED</span></div><div><button class="text-btn" id="restoreStep">Restore</button><button class="button dark" id="editStep">Edit wording</button></div></div><label>Step title</label><h2 id="guideStepTitle" contenteditable="false">Loading…</h2><label>Instruction</label><p id="guideStepDesc" contenteditable="false">Loading…</p><div class="provenance"><span>↳ Linked to source</span><code id="sourceId">sourceStepId</code><strong id="confidence">100% confidence</strong></div></article>
-          </div>
+          <aside class="card steps-panel" id="stepsPanel">
+            <div class="steps-head">
+              <div class="steps-title-row"><strong>Guide steps</strong><span id="stepsCount">0 steps</span><button class="steps-collapse" id="collapseSteps" type="button" aria-label="Collapse guide steps" title="Collapse guide steps">‹</button></div>
+              <input id="stepSearch" placeholder="Search steps"/>
+            </div>
+            <div id="stepList" class="step-list"></div>
+            <div id="excludedStepsBox" class="excluded-steps"></div>
+          </aside>
+          <div class="guide-scroll" id="guideScroll" aria-live="polite"></div>
         </div>
       </section>
 
@@ -100,14 +107,16 @@
 └── ai-process-model.json</pre></article></div></section>
     </div>
   </main>
+</div>
 
-  <aside class="ai-rail">
-    <div class="ai-head"><div><span class="ai-orb">✦</span><div><strong>Krivyo AI</strong><small>● Context connected</small></div></div><button class="icon-btn" id="collapseAi">›</button></div>
-    <div class="ai-context"><span>Working with</span><strong id="aiContextTitle">Latest capture</strong><p id="aiContextMeta">10 recorder steps · 7 test steps</p></div>
-    <div class="conversation" id="conversation"><div class="message"><span class="msg-orb">✦</span><div><p>I can help you understand this capture, refine the guide, or reason about the generated test flow.</p><small>AI chat connection is the next backend step.</small></div></div></div>
-    <div class="suggestions" id="suggestions"></div>
-    <form class="composer" id="composer"><textarea id="aiInput" rows="2" placeholder="Ask about this process…"></textarea><div><span>Source-linked answers</span><button>➤</button></div></form>
-  </aside>
+<div class="modal-backdrop" id="discardDialog" aria-hidden="true">
+  <div class="confirm-dialog" role="dialog" aria-modal="true" aria-labelledby="discardTitle">
+    <div class="danger-icon">!</div>
+    <p class="eyebrow">PERMANENT ACTION</p>
+    <h2 id="discardTitle">Discard this recording?</h2>
+    <p>This permanently removes the capture, screenshots, guide edits and generated AI artifacts from your Krivyo Workspace. This cannot be undone.</p>
+    <div class="confirm-actions"><button class="button secondary" id="cancelDiscard" type="button">Cancel</button><button class="button danger" id="confirmDiscard" type="button">Discard recording</button></div>
+  </div>
 </div>
 <div class="toast" id="toast"></div>
 <div class="palette" id="palette"><button class="palette-bg"></button><div class="palette-box"><div class="palette-search"><input id="commandSearch" placeholder="Search workspace…"/><kbd>Esc</kbd></div><p>Navigate</p><button data-command="home">⌂ <strong>Home</strong><small>Workspace overview</small></button><button data-command="recording">◉ <strong>Capture</strong><small>Original recorded process</small></button><button data-command="guides">▤ <strong>Guides</strong><small>AI-enhanced process guide</small></button><button data-command="tests">✓ <strong>Test Cases</strong><small>Generated test script</small></button><button data-command="settings">⚙ <strong>Settings</strong><small>Capture, AI and privacy</small></button></div></div>
