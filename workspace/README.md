@@ -1,78 +1,18 @@
-# Krivyo Workspace v0.1
+# Krivyo Workspace v0.2
 
-Standalone, dependency-free workspace shell for GitHub Pages.
+Product workspace for `https://krivyo.com/workspace/`.
 
-## Production URL
+## Included
+- Krivyo website palette and typography.
+- Shared root assets (`../assets/`) — no duplicate workspace assets.
+- Home, Guides, Test Cases, Knowledge, Analytics and Settings navigation.
+- Contextual Krivyo AI rail.
+- Real sample capture data for UI validation.
+- Guide wording editor with 1:1 recorder-step sequencing.
+- Test Script table with CSV export.
+- Query-string ready for future extension handoff: `?capture=CAP-...&view=guides`.
 
-Place this entire folder at `/workspace` in the existing Krivyo website repository.
-After GitHub Pages deploys it will be available at:
+## Current mode
+The workspace intentionally loads `/workspace/data/*.json` locally so the product experience can be approved before secure live Supabase connectivity is added.
 
-`https://krivyo.com/workspace/`
-
-The current demo uses the real Krivyo capture `CAP-20260808-053754-10CFD7` and its generated `guide-model.json` + `ai-process-model.json`.
-
-## What is implemented
-
-- Premium Krivyo-branded full-width app workspace
-- Process Guide tab
-  - exactly 1 AI guide step per recorded source step
-  - original source-step traceability
-  - local edit / restore interaction
-  - privacy-safe screenshot placeholder when screenshots are not shared
-- Test Script tab
-  - proper test-step table generated from the current AI process model
-  - precondition, test data, expected-result basis, evidence and confidence
-  - working CSV export
-- Recording tab
-  - deterministic source timeline
-  - artifact/storage status
-- Details tab
-  - capture + AI provenance
-  - privacy state
-  - storage structure
-- Command palette (`Ctrl/Cmd + K`)
-- Responsive desktop/tablet/mobile layout
-- No frameworks, build tools or external JavaScript dependencies
-
-## Deliberately NOT connected yet
-
-- Supabase live fetch/authentication
-- user login/workspace tenancy
-- persistent edits
-- screenshot fetch
-- enhanced PDF generation
-- extension redirect after Complete Review / first PDF
-
-Those should be connected after the workspace UI/design is approved.
-
-## Local preview
-
-From the repo root:
-
-```bash
-python -m http.server 8080
-```
-
-Then open:
-
-`http://localhost:8080/workspace/`
-
-## Files
-
-- `index.html`
-- `workspace.css`
-- `workspace.js`
-- `assets/krivyo-mark.svg`
-- `assets/favicon.svg`
-- `data/process-model.json`
-- `data/raw-session.json`
-- `data/guide-model.json`
-- `data/ai-process-model.json`
-
-## Next connection
-
-Once approved, replace the demo JSON adapter with an authenticated Krivyo backend endpoint so a URL can resolve a capture, e.g.:
-
-`https://krivyo.com/workspace/?capture=CAP-...`
-
-The browser must never receive `OPENAI_API_KEY`, Supabase service-role keys, or `KRIVYO_AI_INTERNAL_TOKEN`.
+No OpenAI key, Supabase service-role key, or Krivyo internal AI token is exposed in browser code.
